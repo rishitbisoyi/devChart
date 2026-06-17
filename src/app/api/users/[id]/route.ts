@@ -38,7 +38,7 @@ export async function PATCH(
       return Response.json(target);
     }
 
-    // Admin cannot touch the hardcoded super-admin email
+    // Admin cannot touch the designated super-admin account
     if (target.email === SUPER_ADMIN_EMAIL) {
       return Response.json({ message: "The super-admin account cannot be modified" }, { status: 403 });
     }
@@ -73,7 +73,7 @@ export async function DELETE(
     const target = await User.findById(id);
     if (!target) return Response.json({ message: "User not found" }, { status: 404 });
 
-    // Protect the hardcoded super-admin email from deletion
+    // Protect the designated super-admin account from deletion
     if (target.email === SUPER_ADMIN_EMAIL) {
       return Response.json({ message: "The super-admin account cannot be deleted" }, { status: 403 });
     }

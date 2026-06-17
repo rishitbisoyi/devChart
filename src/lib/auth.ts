@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
         const valid = await bcrypt.compare(credentials.password, user.password);
         if (!valid) return null;
 
-        // Always enforce super-admin for the hardcoded email
+        // Ensure designated super-admin account retains super-admin role
         if (user.email === SUPER_ADMIN_EMAIL && user.role !== "super-admin") {
           await User.findByIdAndUpdate(user._id, { role: "super-admin" });
           user.role = "super-admin";
