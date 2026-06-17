@@ -220,10 +220,8 @@ The application is deployed using Vercel and connected to MongoDB Atlas.
 
 ## Known Limitations
 
-* CSV export is restricted to Admin and Super Admin roles.
 * Real-time multi-user synchronization is not implemented.
 * Notifications are session-based and not delivered through email or push services.
-* Advanced reporting features can be expanded further in future versions.
 
 ---
 
