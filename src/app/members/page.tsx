@@ -39,8 +39,17 @@ export default function MembersPage() {
       fetch("/api/members").then((r) => r.json()),
       fetch("/api/tasks").then((r) => r.json()),
     ])
-      .then(([m, t]) => { setMembers(m); setTasks(t); })
-      .finally(() => setLoading(false));
+      .then(([m, t]) => {
+  setMembers(Array.isArray(m) ? m : []);
+  setTasks(Array.isArray(t) ? t : []);
+})
+.catch((err) => {
+  console.error(err);
+  setMembers([]);
+  setTasks([]);
+})
+.finally(() => setLoading(false));
+
   }, []);
 
   function getMemberStats(memberName: string) {
